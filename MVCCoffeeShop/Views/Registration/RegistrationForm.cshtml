@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "RegistrationForm";
+}
+
+
+
+
+
+
+<form action="../Registration/DisplayUser" method="post">
+    <div class="text-center">
+        <h1>Registration Form</h1>
+        <input type="text" name="UserName" value="" placeholder="Name" required />
+        <input type="text" name="Email" value="" placeholder="Email" required />
+        <input type="password" name="Password" value="" placeholder="Password" 
+               required pattern="^(?=.*\d).{4}$" 
+               oninvalid="this.setCustomValidity('Password must be at least 4 characters, and include a number')"
+               oninput="this.setCustomValidity('')"/> 
+        <br /> <br />
+
+        <input type="submit" />
+    </div>
+</form>
+
+
