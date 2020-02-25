@@ -4,22 +4,30 @@
 }
 
 
+@model RegisterUser
 
-
-
+    <h1>User Registration Form</h1>
 
 <form action="../Registration/DisplayUser" method="post">
-    <div class="text-center">
-        <h1>Registration Form</h1>
-        <input type="text" name="UserName" value="" placeholder="Name" required />
-        <input type="text" name="Email" value="" placeholder="Email" required />
-        <input type="password" name="Password" value="" placeholder="Password" 
-               required pattern="^(?=.*\d).{4}$" 
-               oninvalid="this.setCustomValidity('Password must be at least 4 characters, and include a number')"
+    <div class="d-flex justify-content-left">
+        
+        <input class="p-2" type="text" name="UserName" value="" placeholder="Name" required />
+        <input class="p-2" type="text" name="Email" value="" placeholder="Email" 
+               required pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+               oninvalid="this.setCustomValidity('Please enter a valid email')"
+               oninput="this.setCustomValidity('')"/>
+        <input class="p-2" type="password" name="Password" value="" placeholder="Password" 
+               required pattern="^(?=.*\d).{8,}$" 
+               oninvalid="this.setCustomValidity('Password must be at least 8 characters long and include at least one numeric digit.')"
                oninput="this.setCustomValidity('')"/> 
         <br /> <br />
 
-        <input type="submit" />
+        <input class="btn btn-primary" type="submit" />
+    </div>
+    <div class="alert alert-dark" style="margin-top:5px">
+        <p>@Html.ValidationMessageFor(m => m.UserName)</p>
+        <p>@Html.ValidationMessageFor(m => m.Email)</p>
+        <p>@Html.ValidationMessageFor(m => m.Password)</p>
     </div>
 </form>
 

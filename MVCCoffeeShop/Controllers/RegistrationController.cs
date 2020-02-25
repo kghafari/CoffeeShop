@@ -11,13 +11,18 @@ namespace MVCCoffeeShop.Controllers
     {
         public IActionResult RegistrationForm()
         {
-            return View();
+            return View(new RegisterUser());
         }
 
         public IActionResult DisplayUser(RegisterUser user)
         {
-            user.GetUserName();
-            return View("DisplayUser", user);
+            if(ModelState.IsValid)
+            {
+                user.GetUserName();
+                return View("DisplayUser", user);
+            }
+            
+            return View("RegistrationForm", user);
         }
     }
 }
