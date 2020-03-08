@@ -18,7 +18,6 @@ namespace MVCCoffeeShop.Controllers
         {
             if(ModelState.IsValid)
             {
-                user.GetUserName();
                 return View("DisplayUser", user);
             }
             

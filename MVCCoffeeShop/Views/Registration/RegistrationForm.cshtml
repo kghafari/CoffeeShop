@@ -6,29 +6,40 @@
 
 @model RegisterUser
 
-    <h1>User Registration Form</h1>
+<h1>User Registration Form</h1>
 
 <form action="../Registration/DisplayUser" method="post">
     <div class="d-flex justify-content-left">
-        
-        <input class="p-2" type="text" name="UserName" value="" placeholder="Name" required />
-        <input class="p-2" type="text" name="Email" value="" placeholder="Email" 
+
+        <input class="p-2" type="text" name="UserName" value="@Model.UserName" placeholder="Name" required />
+
+        <input class="p-2" type="text" name="Email" value="@Model.Email" placeholder="Email"
                required pattern="^[a-zA-Z0-9._+-]+@("@")[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
                oninvalid="this.setCustomValidity('Please enter a valid email')"
-               oninput="this.setCustomValidity('')"/>
-        <input class="p-2" type="password" name="Password" value="" placeholder="Password" 
-               required pattern="^(?=.*\d).{8,}$" 
+               oninput="this.setCustomValidity('')" />
+
+        <input class="p-2" type="password" name="Password" value="" placeholder="Password"
+               required pattern="^(?=.*\d).{8,}$"
                oninvalid="this.setCustomValidity('Password must be at least 8 characters long and include at least one numeric digit.')"
-               oninput="this.setCustomValidity('')"/> 
+               oninput="this.setCustomValidity('')" />
         <br /> <br />
 
         <input class="btn btn-primary" type="submit" />
     </div>
-    <div class="alert alert-dark" style="margin-top:5px">
-        <p>@Html.ValidationMessageFor(m => m.UserName)</p>
-        <p>@Html.ValidationMessageFor(m => m.Email)</p>
-        <p>@Html.ValidationMessageFor(m => m.Password)</p>
-    </div>
+
+    @if (Model.UserName != null || Model.Email != null)
+    {
+        <div class="alert alert-danger" style="margin-top:5px">
+            <table>
+                <tr>
+                    <td>@Html.ValidationMessageFor(m => m.UserName)</td>
+                    <td>@Html.ValidationMessageFor(m => m.Email)</td>
+                    <td>@Html.ValidationMessageFor(m => m.Password)</td>
+                </tr>
+            </table>
+        </div>
+    }
+
 </form>
 
 
